@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>文件卡片</title>
+  <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/vant@4/lib/index.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    .file-card {
+      width: 320px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      position: relative;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .file-card__close {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      width: 24px;
+      height: 24px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1;
+    }
+    .file-card__close .van-icon { color: #fff; font-size: 14px; }
+
+    .file-card__info {
+      display: flex;
+      align-items: center;
+      padding-bottom: 14px;
+    }
+
+    .file-card__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      background: #1a73e8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .file-card__icon .van-icon { color: #fff; font-size: 24px; }
+
+    .file-card__meta {
+      margin-left: 12px;
+      overflow: hidden;
+    }
+    .file-card__name {
+      font-size: 15px;
+      color: #333;
+      line-height: 1.4;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .file-card__size {
+      font-size: 13px;
+      color: #999;
+      margin-top: 2px;
+    }
+
+    .file-card__tags {
+      display: flex;
+      gap: 10px;
+      padding-top: 12px;
+      border-top: 1px solid #f0f0f0;
+    }
+    .file-card__tag {
+      flex: 1;
+      height: 40px;
+      border-radius: 20px;
+      border: 1px solid #e0e0e0;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #333;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .file-card__tag:active { background: #f5f5f5; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="file-card">
+      <!-- 关闭按钮 -->
+      <div class="file-card__close" @click="onClose">
+        <van-icon name="cross" />
+      </div>
+
+      <!-- 文件信息 -->
+      <div class="file-card__info">
+        <div class="file-card__icon">
+          <van-icon name="description" />
+        </div>
+        <div class="file-card__meta">
+          <div class="file-card__name">68305960feb33314f0f</div>
+          <div class="file-card__size">docx 8.49MB</div>
+        </div>
+      </div>
+
+      <!-- 标签按钮 -->
+      <div class="file-card__tags">
+        <div class="file-card__tag" @click="onTagClick('XMCM')">XMCM</div>
+        <div class="file-card__tag" @click="onTagClick('XUGONG2500E')">XUGONG2500E</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://fastly.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+  <script src="https://fastly.jsdelivr.net/npm/vant@4/lib/vant.min.js"></script>
+  <script>
+    const { createApp } = Vue;
+
+    const app = createApp({
+      setup() {
+        const onClose = () => {
+          console.log('关闭');
+        };
+        const onTagClick = (tag) => {
+          vant.showToast(tag);
+        };
+        return { onClose, onTagClick };
+      }
+    });
+
+    app.use(vant);
+    app.mount('#app');
+  </script>
+</body>
+</html>
