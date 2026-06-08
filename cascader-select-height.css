@@ -1,0 +1,19 @@
+/**
+ * Ant Design Vue 4.x - 级联选择器(Cascader)弹出框最大高度
+ * 与下拉选择器(Select)弹出框最大高度保持一致
+ *
+ * Select 默认 listHeight: 256px
+ * Cascader 默认每列 max-height: 180px
+ *
+ * 以下样式将 Cascader 每列高度统一为 256px
+ */
+
+/* 方案一：全局覆盖 */
+.ant-cascader-menu {
+  max-height: 256px !important;
+}
+
+/* 方案二：通过 popupClassName 局部覆盖（推荐） */
+.cascader-select-consistent .ant-cascader-menu {
+  max-height: 256px;
+}
